@@ -1,0 +1,15 @@
+{
+  "name": "11)-de-groentetuin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Groentetuin-0.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.1.1"
+  }
+}
