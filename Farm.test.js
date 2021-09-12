@@ -1,4 +1,4 @@
-const { getYieldForPlant, getYieldForCrop, getTotalYield } = require("./Farm");
+const { getYieldForPlant, getYieldForCrop, getTotalYield, getCostsForCrop } = require("./Farm");
 
 // TESTING - GET YIELD FOR PLANT //
 
@@ -57,6 +57,23 @@ describe("getTotalYield", () => {
         expect(getTotalYield({ crops })).toBe(0);
     });
 });
+
+// FIRST ASSIGMENT -> THE COST PER CROP //
+
+describe("getCostsForCrop", () => {
+    const corn = {
+        name: "corn",
+        yield: 3,
+        costs: 1,
+    }
+    const input = {
+        crop: corn,
+        numCrops: 10,
+    }
+    test("GET THE COST PER CROP", () => {
+        expect(getCostsForCrop(input)).toBe(10)
+    })
+})
 
 // CORN //
 
