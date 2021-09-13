@@ -16,14 +16,19 @@ const getTotalYield = ({ crops }) => {
 // FIRST ASSIGMENT -> THE COST PER CROP //
 
 const getCostsForCrop = (cropDetails) => {
-    const costPerCrop = cropDetails.crop.costs;
-    return costPerCrop * cropDetails.numCrops;
+    return (cropDetails.crop.costs) * cropDetails.numCrops;
 };
 
 // SECOND ASSIGNMENT -> GET REVENUE FOR CROPS //
 
 const getRevenueForCrop = (cropDetails) => {
-    return (getYieldForCrop(cropDetails) * cropDetails.crop.salesPrice)
+    return (getYieldForCrop(cropDetails) * cropDetails.crop.salesPrice);
+};
+
+// THIRD ASSIGNMENT -> GET PROFIT FOR CROPS //
+
+const getProfitForCrop = (cropDetails) => {
+    return (getRevenueForCrop(cropDetails)) - getCostsForCrop(cropDetails)
 }
 
 module.exports = {
@@ -32,6 +37,6 @@ module.exports = {
     getTotalYield,
     getCostsForCrop,
     getRevenueForCrop,
-    // getProfitForCrop,
+    getProfitForCrop,
     // getTotalProfit
 };
