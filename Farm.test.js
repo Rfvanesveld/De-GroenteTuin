@@ -1,4 +1,11 @@
-const { getYieldForPlant, getYieldForCrop, getTotalYield, getCostsForCrop, getRevenueForCrop } = require("./Farm");
+const {
+    getYieldForPlant,
+    getYieldForCrop,
+    getTotalYield,
+    getCostsForCrop,
+    getRevenueForCrop,
+    getProfitForCrop }
+    = require("./Farm");
 
 // TESTING - GET YIELD FOR PLANT //
 
@@ -7,7 +14,6 @@ describe("getYieldForPlant", () => {
         name: "corn",
         yield: 30,
     };
-
     test("Get yield for plant with no environment factors", () => {
         expect(getYieldForPlant(corn)).toBe(30);
     });
@@ -19,7 +25,7 @@ describe("getYieldForCrop", () => {
     test("Get yield for crop, simple", () => {
         const corn = {
             name: "corn",
-            yield: 3,
+            yield: 3
         };
         const input = {
             crop: corn,
@@ -58,59 +64,54 @@ describe("getTotalYield", () => {
     });
 });
 
-// FIRST ASSIGMENT -> THE COST PER CROP //
+// FIRST ASSIGMENT -> GET THE COST PER CROP //
 
 describe("getCostsForCrop", () => {
-    const corn = {
-        name: "corn",
+    const cucumber = {
+        name: "Cucumber",
         yield: 3,
-        costs: 1,
+        costs: 3,
     }
     const input = {
-        crop: corn,
-        numCrops: 10,
+        crop: cucumber,
+        numCrops: 25,
     }
-    test("GET THE COST PER CROP", () => {
-        expect(getCostsForCrop(input)).toBe(10)
+    test("GET THE COST OF CUCUMBERS", () => {
+        expect(getCostsForCrop(input)).toBe(75)
     })
 })
 
 // SECOND ASSIGNMENT -> GET REVENUE FOR CROPS //
 
 describe("getRevenueForCrop", () => {
-    const orange = {
-        name: "orange",
+    const spinach = {
+        name: "Spinach",
         salesPrice: 5,
         yield: 5
     }
-
     const cropDetails = {
         numCrops: 10,
-        crop: orange,
-
+        crop: spinach,
     }
-
-    test("GET REVENUE FOR CROPS OF ORANGES)", () => {
+    test("GET REVENUE FOR SPINACH", () => {
         expect(getRevenueForCrop(cropDetails)).toBe(250)
     })
 })
 
+// THIRD ASSIGNMENT -> GET PROFIT FOR CROPS //
 
-
-// CORN //
-
-const corn = {
-    name: "corn",
-    yield: 30,
-    factors: {
-        sun: {
-            low: -50,
-            medium: 0,
-            high: 50,
-        },
-    },
-};
-
-const environmentFactors = {
-    sun: "low",
-};
+describe("getProfitForCrop", () => {
+    const tomato = {
+        name: "Tomato",
+        salesPrice: 5,
+        costs: 2,
+        yield: 4
+    }
+    const cropDetails = {
+        numCrops: 20,
+        crop: tomato,
+    }
+    test("GET PROFIT FOR TOMATOES", () => {
+        expect(getProfitForCrop(cropDetails)).toBe(360)
+    })
+})
