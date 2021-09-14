@@ -4,8 +4,12 @@ const {
     getTotalYield,
     getCostsForCrop,
     getRevenueForCrop,
+<<<<<<< HEAD
     getProfitForCrop,
     getTotalProfit }
+=======
+    getProfitForCrop }
+>>>>>>> 839368c78d9c317c2f866272ea6b6ad4723d766d
     = require("./Farm");
 
 // TESTING - GET YIELD FOR PLANT //
@@ -116,6 +120,7 @@ describe("getProfitForCrop", () => {
         expect(getProfitForCrop(cropDetails)).toBe(360)
     })
 })
+<<<<<<< HEAD
 
 // FOURTH ASSIGNMENT -> GET TOTAL PROFIT //
 
@@ -148,3 +153,5 @@ describe("getTotalProfit", () => {
     })
 })
 
+=======
+>>>>>>> 839368c78d9c317c2f866272ea6b6ad4723d766d
