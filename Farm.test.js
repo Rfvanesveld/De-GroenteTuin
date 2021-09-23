@@ -6,25 +6,27 @@ const {
     getRevenueForCrop,
     getProfitForCrop,
     getTotalProfit,
-    getYieldForPlantWithFactors }
+    getYieldForPlantWithFactors,
+    getYieldForCropWithFactors
+}
     = require("./Farm");
 
-// TESTING - GET YIELD FOR PLANT //
+// TESTING -> GET YIELD FOR PLANT //
 
 describe("getYieldForPlant", () => {
     const corn = {
         name: "Corn",
         yield: 30,
     };
-    test("Get yield for plant with no environment factors", () => {
+    test("TEST -> GET YIELD FOR PLANT WITH NO ENVIRONMENTAL FACTORS", () => {
         expect(getYieldForPlant(corn)).toBe(30);
     });
 });
 
-// TESTING - GET YIELD FOR CROP //
+// TESTING -> GET YIELD FOR CROP //
 
 describe("getYieldForCrop", () => {
-    test("Get yield for crop, simple", () => {
+    test("TEST -> GET YIELD FOR CROP WITH NO ENVIRONMENTAL FACTORS", () => {
         const corn = {
             name: "corn",
             yield: 3
@@ -37,10 +39,10 @@ describe("getYieldForCrop", () => {
     });
 });
 
-// TESTING - GET TOTAL YIELD //
+// TESTING -> GET TOTAL YIELD //
 
 describe("getTotalYield", () => {
-    test("Calculate total yield with multiple crops", () => {
+    test("TEST -> CALCULATE TOTAL YIELD WITH MULTIPLE CROPS", () => {
         const corn = {
             name: "corn",
             yield: 3,
@@ -56,7 +58,7 @@ describe("getTotalYield", () => {
         expect(getTotalYield({ crops })).toBe(23);
     });
 
-    test("Calculate total yield with 0 amount", () => {
+    test("TEST -> CALCULATE TOTAL YIELD WITH 0 AMOUNT", () => {
         const corn = {
             name: "corn",
             yield: 3,
@@ -78,7 +80,7 @@ describe("getCostsForCrop", () => {
         crop: cucumber,
         numCrops: 25,
     }
-    test("GET THE COST OF CUCUMBERS", () => {
+    test("TEST -> GET THE COST OF CUCUMBERS", () => {
         expect(getCostsForCrop(input)).toBe(75)
     })
 })
@@ -95,7 +97,7 @@ describe("getRevenueForCrop", () => {
         numCrops: 10,
         crop: spinach,
     }
-    test("GET REVENUE FOR SPINACH", () => {
+    test("TEST -> GET REVENUE FOR SPINACH", () => {
         expect(getRevenueForCrop(cropDetails)).toBe(250)
     })
 })
@@ -113,7 +115,7 @@ describe("getProfitForCrop", () => {
         numCrops: 20,
         crop: tomato,
     }
-    test("GET PROFIT FOR TOMATOES", () => {
+    test("TEST -> GET PROFIT FOR TOMATOES", () => {
         expect(getProfitForCrop(cropDetails)).toBe(360)
     })
 })
@@ -144,14 +146,14 @@ describe("getTotalProfit", () => {
         { crop: eggplant, numCrops: 20 },
         { crop: carrots, numCrops: 50 }
     ];
-    test("GET TOTAL REVENUE FOR THREE DIFFERENT CROPS/VEGETABLES", () => {
+    test("TEST -> GET TOTAL REVENUE FOR THREE DIFFERENT CROPS/VEGETABLES", () => {
         expect(getTotalProfit({ cropList })).toBe(10420)
     })
 })
 
 // FIFTH ASSIGNMENT -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS //
 
-// FIRST TEST 5.1 => FACTORS ARE: HIGH SUN & MEDIUM WIND
+// TEST 5.1 -> FACTORS ARE: HIGH SUN & MEDIUM WIND //
 
 describe("getYieldForPlantWithFactors", () => {
     const corn = {
@@ -175,12 +177,12 @@ describe("getYieldForPlantWithFactors", () => {
         wind: "medium",
     };
 
-    test("GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (HIGH SUN & MEDIUM WIND", () => {
+    test("TEST -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (HIGH SUN & MEDIUM WIND", () => {
         expect(getYieldForPlantWithFactors(corn, environmentalFactors)).toBe(45);
     });
 });
 
-// SECOND TEST 5.2 => FACTORS ARE: LOW SUN & HIGH WIND
+// TEST 5.2 -> FACTORS ARE: LOW SUN & HIGH WIND //
 
 describe("getYieldForPlantWithFactors", () => {
     const corn = {
@@ -204,7 +206,79 @@ describe("getYieldForPlantWithFactors", () => {
         wind: "high",
     };
 
-    test("GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (LOW SUN & HIGH WIND", () => {
+    test("TEST -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (LOW SUN & HIGH WIND)", () => {
         expect(getYieldForPlantWithFactors(corn, environmentalFactors)).toBe(22.5);
+    });
+});
+
+// SIXTH ASSIGNMENT -> GET YIELD FOR CROP WITH TWO ENVIRONMENTAL FACTORS //
+
+// TEST 6.1 -> FACTORS ARE: LOW SUN & MEDIUM WIND //
+
+describe("getYieldForCropWithFactors", () => {
+    const corn = {
+        name: "corn",
+        yield: 5,
+        factors: {
+            sun: {
+                low: -20,
+                medium: 10,
+                high: 40,
+            },
+            wind: {
+                low: -40,
+                medium: 10,
+                high: 60,
+            },
+        },
+    };
+
+    const input = {
+        crop: corn,
+        numCrops: 20,
+    };
+
+    const environmentalFactors = {
+        sun: "low",
+        wind: "medium",
+    };
+
+    test("TEST -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (LOW SUN & MEDIUM WIND)", () => {
+        expect(getYieldForCropWithFactors(input, environmentalFactors)).toBe(88);
+    });
+});
+
+// TEST 6.2 -> FACTORS ARE: HIGH SUN & HIGH WIND //
+
+describe("getYieldForCropWithFactors", () => {
+    const corn = {
+        name: "corn",
+        yield: 5,
+        factors: {
+            sun: {
+                low: -20,
+                medium: 10,
+                high: 40,
+            },
+            wind: {
+                low: -40,
+                medium: 10,
+                high: 60,
+            },
+        },
+    };
+
+    const input = {
+        crop: corn,
+        numCrops: 20,
+    };
+
+    const environmentalFactors = {
+        sun: "high",
+        wind: "high",
+    };
+
+    test("TEST -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
+        expect(getYieldForCropWithFactors(input, environmentalFactors)).toBe(224);
     });
 });
