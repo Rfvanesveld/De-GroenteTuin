@@ -1,10 +1,10 @@
 // GET YIELD FOR PLANT //
 
-const getYieldForPlant = (plant) => plant.yield;
+const getYieldForPlant = (input) => input.yield;
 
 // GET YIELD FOR CROP //
 
-const getYieldForCrop = (cropDetails) => cropDetails.crop.yield * cropDetails.numCrops;
+const getYieldForCrop = (input) => input.crop.yield * input.numCrops;
 
 // GET TOTAL YIELD //
 
@@ -34,15 +34,15 @@ const getTotalProfit = ({ cropList }) => {
 
 // FIFTH ASSIGNMENT -> GET YIELD FOR PLANT WITH TWO ENVIRONMENTAL FACTORS //
 
-const getYieldForPlantWithFactors = (plant, environmentalFactors) => {
-    const sunFactor = plant.factors.sun[environmentalFactors.sun] / 100 + 1;
-    const windFactor = plant.factors.wind[environmentalFactors.wind] / 100 + 1;
+const getYieldForPlantWithFactors = (input, environmentalFactors) => {
+    const sunFactor = input.factors.sun[environmentalFactors.sun] / 100 + 1;
+    const windFactor = input.factors.wind[environmentalFactors.wind] / 100 + 1;
 
-    if (environmentalFactors.sun === "low") { sunDetails = plant.yield * sunFactor }
+    if (environmentalFactors.sun === "low") { sunDetails = input.yield * sunFactor }
 
-    else if (environmentalFactors.sun === "high") { sunDetails = plant.yield * sunFactor }
+    else if (environmentalFactors.sun === "high") { sunDetails = input.yield * sunFactor }
 
-    else { sunDetails = plant.yield }
+    else { sunDetails = input.yield }
 
     if (environmentalFactors.wind === "low") { sunAndWindDetails = sunDetails * windFactor }
 
@@ -50,7 +50,12 @@ const getYieldForPlantWithFactors = (plant, environmentalFactors) => {
 
     else { sunAndWindDetails = sunDetails * windFactor }
     return sunAndWindDetails
-}
+};
+
+// SIXTH ASSIGNMENT -> GET YIELD FOR CROP WITH TWO ENVIRONMENTAL FACTORS //
+
+const getYieldForCropWithFactors = (input, environmentalFactors) => Math.round(getYieldForPlantWithFactors(input.crop, environmentalFactors)
+    * input.numCrops);
 
 module.exports = {
     getYieldForPlant,
@@ -60,5 +65,7 @@ module.exports = {
     getRevenueForCrop,
     getProfitForCrop,
     getTotalProfit,
-    getYieldForPlantWithFactors
+    getYieldForPlantWithFactors,
+    getYieldForCropWithFactors
+
 };
