@@ -9,10 +9,11 @@ const {
     getYieldForPlantWithFactors,
     getYieldForCropWithFactors,
     getTotalYieldWithFactors,
+    getRevenueForCropWithFactors
 }
     = require("./Farm");
 
-// TESTING -> GET YIELD FOR PLANT //
+// FIRST ASSIGMENT -> TESTING -> GET YIELD FOR PLANT //
 
 describe("getYieldForPlant", () => {
     const corn = {
@@ -24,7 +25,7 @@ describe("getYieldForPlant", () => {
     });
 });
 
-// TESTING -> GET YIELD FOR CROP //
+// SECOND ASSIGNMENT -> TESTING -> GET YIELD FOR CROP //
 
 describe("getYieldForCrop", () => {
     test("TEST -> GET YIELD FOR CROP WITH NO ENVIRONMENTAL FACTORS", () => {
@@ -40,7 +41,7 @@ describe("getYieldForCrop", () => {
     });
 });
 
-// TESTING -> GET TOTAL YIELD //
+// THIRD ASSIGNMENT -> TESTING -> GET TOTAL YIELD //
 
 describe("getTotalYield", () => {
     test("TEST -> CALCULATE TOTAL YIELD WITH MULTIPLE CROPS", () => {
@@ -69,7 +70,7 @@ describe("getTotalYield", () => {
     });
 });
 
-// FIRST ASSIGMENT -> GET THE COST PER CROP //
+// FOURTH ASSIGMENT -> GET THE COST PER CROP //
 
 describe("getCostsForCrop", () => {
     const cucumber = {
@@ -86,7 +87,7 @@ describe("getCostsForCrop", () => {
     })
 })
 
-// SECOND ASSIGNMENT -> GET REVENUE FOR CROPS //
+// FIFTH ASSIGNMENT -> GET REVENUE FOR CROPS //
 
 describe("getRevenueForCrop", () => {
     const spinach = {
@@ -103,7 +104,7 @@ describe("getRevenueForCrop", () => {
     })
 })
 
-// THIRD ASSIGNMENT -> GET PROFIT FOR CROPS //
+// SIXTH ASSIGNMENT -> GET PROFIT FOR CROPS //
 
 describe("getProfitForCrop", () => {
     const tomato = {
@@ -121,7 +122,7 @@ describe("getProfitForCrop", () => {
     })
 })
 
-// FOURTH ASSIGNMENT -> GET TOTAL PROFIT //
+// SEVENTH ASSIGNMENT -> GET TOTAL PROFIT //
 
 describe("getTotalProfit", () => {
     const asparagus = {
@@ -152,9 +153,9 @@ describe("getTotalProfit", () => {
     })
 })
 
-// FIFTH ASSIGNMENT -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS //
+// EIGHTH ASSIGNMENT -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS //
 
-// TEST 5.1 -> FACTORS ARE: HIGH SUN & MEDIUM WIND //
+// TEST 8.1 -> FACTORS ARE: HIGH SUN & MEDIUM WIND //
 
 describe("getYieldForPlantWithFactors", () => {
     const corn = {
@@ -186,7 +187,7 @@ describe("getYieldForPlantWithFactors", () => {
     });
 });
 
-// TEST 5.2 -> FACTORS ARE: LOW SUN & HIGH WIND //
+// TEST 8.2 -> FACTORS ARE: LOW SUN & HIGH WIND //
 
 describe("getYieldForPlantWithFactors", () => {
     const corn = {
@@ -218,9 +219,9 @@ describe("getYieldForPlantWithFactors", () => {
     });
 });
 
-// SIXTH ASSIGNMENT -> GET YIELD FOR CROP WITH TWO ENVIRONMENTAL FACTORS //
+// NINTH ASSIGNMENT -> GET YIELD FOR CROP WITH TWO ENVIRONMENTAL FACTORS //
 
-// TEST 6.1 -> FACTORS ARE: LOW SUN & MEDIUM WIND //
+// TEST 9.1 -> FACTORS ARE: LOW SUN & MEDIUM WIND //
 
 describe("getYieldForCropWithFactors", () => {
     const corn = {
@@ -255,7 +256,7 @@ describe("getYieldForCropWithFactors", () => {
     });
 });
 
-// TEST 6.2 -> FACTORS ARE: HIGH SUN & HIGH WIND //
+// TEST 9.2 -> FACTORS ARE: HIGH SUN & HIGH WIND //
 
 describe("getYieldForCropWithFactors", () => {
     const corn = {
@@ -293,9 +294,9 @@ describe("getYieldForCropWithFactors", () => {
     });
 });
 
-// SEVENTH ASSIGNMENT -> GET TOTAL YIELD WITH TWO ENVIRONMENTAL FACTORS //
+// TENTH ASSIGNMENT -> GET TOTAL YIELD WITH TWO ENVIRONMENTAL FACTORS //
 
-// TEST 7.1 -> FACTORS ARE: LOW SUN & MEDIUM WIND //
+// TEST 10.1 -> FACTORS ARE: LOW SUN & MEDIUM WIND //
 
 describe("getTotalYieldWithFactors", () => {
     test("TEST -> CALCULATE TOTAL YIELD WITH MULTIPLE CROPS & ENVIRONMENTAL FACTORS (LOW SUN & MEDIUM WIND)", () => {
@@ -348,7 +349,7 @@ describe("getTotalYieldWithFactors", () => {
     });
 });
 
-// TEST 7.2 -> FACTORS ARE: HIGH SUN & HIGH WIND //
+// TEST 10.2 -> FACTORS ARE: HIGH SUN & HIGH WIND //
 
 describe("getTotalYieldWithFactors", () => {
     test("TEST -> CALCULATE TOTAL YIELD WITH MULTIPLE CROPS & ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
@@ -400,3 +401,79 @@ describe("getTotalYieldWithFactors", () => {
         expect(getTotalYieldWithFactors({ crops }, environmentalFactors)).toBe(180);
     });
 });
+
+// ELEVENTH ASSIGNMENT -> GET REVENUE FOR CROP WITH TWO ENVIRONMENTAL FACTORS //
+
+// TEST 11.1 -> 
+
+describe("getRevenueForCropWithFactors", () => {
+    const spinach = {
+        name: "Spinach",
+        salesPrice: 5,
+        yield: 5,
+        factors: {
+
+            wind: {
+                low: -40,
+                medium: 10,
+                high: 60
+            },
+
+            sun: {
+                low: -20,
+                medium: 10,
+                high: 40
+            }
+        }
+    }
+
+    const cropDetails = {
+        numCrops: 10,
+        crop: spinach,
+    }
+    const environmentalFactors = {
+        wind: "medium",
+        sun: "low"
+    }
+
+    test("TEST -> GET REVENUE FOR SPINACH & ENVIRONMENTAL FACTORS (LOW SUN & MEDIUM WIND)", () => {
+        expect(getRevenueForCropWithFactors(cropDetails, environmentalFactors)).toBe(220)
+    })
+})
+
+// TEST 11.2 -> 
+
+describe("getRevenueForCropWithFactors", () => {
+    const spinach = {
+        name: "Spinach",
+        salesPrice: 5,
+        yield: 5,
+        factors: {
+
+            wind: {
+                low: -40,
+                medium: 10,
+                high: 60
+            },
+
+            sun: {
+                low: -20,
+                medium: 10,
+                high: 40
+            }
+        }
+    }
+
+    const cropDetails = {
+        numCrops: 10,
+        crop: spinach,
+    }
+    const environmentalFactors = {
+        wind: "high",
+        sun: "high"
+    }
+
+    test("TEST -> GET REVENUE FOR SPINACH & ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
+        expect(getRevenueForCropWithFactors(cropDetails, environmentalFactors)).toBe(560)
+    })
+})

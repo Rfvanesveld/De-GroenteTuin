@@ -1,12 +1,12 @@
-// GET YIELD FOR PLANT //
+// FIRST ASSIGMENT -> GET YIELD FOR PLANT //
 
 const getYieldForPlant = (input) => input.yield;
 
-// GET YIELD FOR CROP //
+// GET SECOND ASSIGNMENT -> YIELD FOR CROP //
 
 const getYieldForCrop = (input) => input.crop.yield * input.numCrops;
 
-// GET TOTAL YIELD //
+// THIRD ASSIGNMENTGET TOTAL YIELD //
 
 const getTotalYield = ({ crops }) => {
     let totalYieldOfAllCrops = 0;
@@ -17,26 +17,26 @@ const getTotalYield = ({ crops }) => {
     return totalYieldOfAllCrops
 }
 
-// FIRST ASSIGMENT -> THE COST PER CROP //
+// FOURTH ASSIGMENT -> THE COST PER CROP //
 
 const getCostsForCrop = (cropDetails) => cropDetails.crop.costs * cropDetails.numCrops;
 
-// SECOND ASSIGNMENT -> GET REVENUE FOR CROPS //
+// FIFTH ASSIGNMENT -> GET REVENUE FOR CROPS //
 
 const getRevenueForCrop = (cropDetails) => getYieldForCrop(cropDetails) * cropDetails.crop.salesPrice;
 
-// THIRD ASSIGNMENT -> GET PROFIT FOR CROPS //
+// SIXTH ASSIGNMENT -> GET PROFIT FOR CROPS //
 
 const getProfitForCrop = (cropDetails) => getRevenueForCrop(cropDetails) - getCostsForCrop(cropDetails);
 
-// FOURTH ASSIGNMENT -> GET TOTAL PROFIT //
+// SEVENTH ASSIGNMENT -> GET TOTAL PROFIT //
 
 const getTotalProfit = ({ cropList }) => {
     const profitOfAllCrops = cropList.map(crop => getProfitForCrop(crop));
     return profitOfAllCrops.reduce((x, y) => x + y);
 };
 
-// FIFTH ASSIGNMENT -> GET YIELD FOR PLANT WITH TWO ENVIRONMENTAL FACTORS //
+// EIGHTH ASSIGNMENT -> GET YIELD FOR PLANT WITH TWO ENVIRONMENTAL FACTORS //
 
 const getYieldForPlantWithFactors = (input, environmentalFactors) => {
     const sunFactor = input.factors.sun[environmentalFactors.sun] / 100 + 1;
@@ -56,13 +56,13 @@ const getYieldForPlantWithFactors = (input, environmentalFactors) => {
     return sunAndWindDetails
 };
 
-// SIXTH ASSIGNMENT -> GET YIELD FOR CROP WITH TWO ENVIRONMENTAL FACTORS //
+// NINTH ASSIGNMENT -> GET YIELD FOR CROP WITH TWO ENVIRONMENTAL FACTORS //
 
 const getYieldForCropWithFactors = (input, environmentalFactors) =>
     Math.round(getYieldForPlantWithFactors(input.crop, environmentalFactors)
         * input.numCrops);
 
-// SEVENTH ASSIGNMENT -> GET TOTAL YIELD WITH TWO ENVIRONMENTAL FACTORS //
+// TENTH ASSIGNMENT -> GET TOTAL YIELD WITH TWO ENVIRONMENTAL FACTORS //
 
 const getTotalYieldWithFactors = ({ crops }, environmentalFactors) => {
     let totalYieldOfAllCrops = 0;
@@ -72,6 +72,11 @@ const getTotalYieldWithFactors = ({ crops }, environmentalFactors) => {
     });
     return totalYieldOfAllCrops;
 }
+
+// ELEVENTH ASSIGNMENT -> GET REVENUE FOR CROP WITH TWO ENVIRONMENTAL FACTORS //
+
+const getRevenueForCropWithFactors = (input, environmentalFactors) => getYieldForCropWithFactors(input, environmentalFactors)
+    * input.crop.salesPrice;
 
 module.exports = {
     getYieldForPlant,
@@ -83,5 +88,6 @@ module.exports = {
     getTotalProfit,
     getYieldForPlantWithFactors,
     getYieldForCropWithFactors,
-    getTotalYieldWithFactors
+    getTotalYieldWithFactors,
+    getRevenueForCropWithFactors
 };
