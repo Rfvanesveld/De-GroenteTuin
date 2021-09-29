@@ -44,15 +44,19 @@ const getYieldForPlantWithFactors = (input, environmentalFactors) => {
 
     if (environmentalFactors.sun === "low") { sunDetails = input.yield * sunFactor }
 
+    else if (environmentalFactors.sun === "medium") { sunDetails = input.yield * sunFactor }
+
     else if (environmentalFactors.sun === "high") { sunDetails = input.yield * sunFactor }
 
-    else { sunDetails = input.yield }
+    // else { sunDetails = input.yield }
 
     if (environmentalFactors.wind === "low") { sunAndWindDetails = sunDetails * windFactor }
 
+    else if (environmentalFactors.wind === "medium") { sunAndWindDetails = sunDetails * windFactor }
+
     else if (environmentalFactors.wind === "high") { sunAndWindDetails = sunDetails * windFactor }
 
-    else { sunAndWindDetails = sunDetails * windFactor }
+    // else { sunAndWindDetails = sunDetails * windFactor }
     return sunAndWindDetails
 };
 

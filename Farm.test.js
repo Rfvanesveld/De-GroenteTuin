@@ -230,9 +230,9 @@ describe("getYieldForCropWithFactors", () => {
         yield: 5,
         factors: {
             sun: {
-                low: -20,
+                low: -40,
                 medium: 10,
-                high: 40,
+                high: 60,
             },
             wind: {
                 low: -40,
@@ -253,7 +253,7 @@ describe("getYieldForCropWithFactors", () => {
     };
 
     test("TEST -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (LOW SUN & MEDIUM WIND)", () => {
-        expect(getYieldForCropWithFactors(input, environmentalFactors)).toBe(88);
+        expect(getYieldForCropWithFactors(input, environmentalFactors)).toBe(66);
     });
 });
 
@@ -266,7 +266,7 @@ describe("getYieldForCropWithFactors", () => {
         factors: {
 
             wind: {
-                low: -40,
+                low: -60,
                 medium: 10,
                 high: 60
             },
@@ -290,7 +290,7 @@ describe("getYieldForCropWithFactors", () => {
         sun: "high"
     };
 
-    test("TEST -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
+    test("TEST -> GET YIELD FOR CROP WITH ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
         expect(getYieldForCropWithFactors(input, environmentalFactors)).toBe(224);
     });
 });
@@ -514,7 +514,7 @@ describe("getProfitForCropWithFactors", () => {
     }
 
     test("TEST -> GET PROFIT FOR TOMATOES WITH ENVIRONMENTAL FACTORS ((LOW SUN & MEDIUM WIND)", () => {
-        expect(getProfitForCropWithFactors(input, environmentalFactors)).toBe(201.6)
+        expect(getProfitForCropWithFactors(input, environmentalFactors)).toBe(200)
     })
 })
 
