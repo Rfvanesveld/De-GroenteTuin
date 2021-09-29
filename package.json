@@ -1,7 +1,6 @@
 {
   "name": "11)-de-groentetuin",
   "version": "1.0.0",
-  "description": "",
   "main": "Groentetuin-0.js",
   "scripts": {
     "test": "jest"
@@ -10,6 +9,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^27.1.1"
-  }
+    "jest": "^27.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rfvanesveld/De-GroenteTuin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Rfvanesveld/De-GroenteTuin/issues"
+  },
+  "homepage": "https://github.com/Rfvanesveld/De-GroenteTuin#readme",
+  "description": ""
 }
