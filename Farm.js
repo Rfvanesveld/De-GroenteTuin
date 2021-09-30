@@ -15,7 +15,7 @@ const getTotalYield = ({ crops }) => {
         totalYieldOfAllCrops += getYieldForCrop(currentCrops)
     });
     return totalYieldOfAllCrops
-}
+};
 
 // ASSIGNMENT 4 -> THE COST PER CROP //
 
@@ -48,15 +48,12 @@ const getYieldForPlantWithFactors = (input, environmentalFactors) => {
 
     else if (environmentalFactors.sun === "high") { sunDetails = input.yield * sunFactor }
 
-    // else { sunDetails = input.yield }
-
     if (environmentalFactors.wind === "low") { sunAndWindDetails = sunDetails * windFactor }
 
     else if (environmentalFactors.wind === "medium") { sunAndWindDetails = sunDetails * windFactor }
 
     else if (environmentalFactors.wind === "high") { sunAndWindDetails = sunDetails * windFactor }
 
-    // else { sunAndWindDetails = sunDetails * windFactor }
     return sunAndWindDetails
 };
 
@@ -75,17 +72,24 @@ const getTotalYieldWithFactors = ({ crops }, environmentalFactors) => {
         totalYieldOfAllCrops += getYieldForCropWithFactors(input, environmentalFactors)
     });
     return totalYieldOfAllCrops;
-}
+};
 
 // ASSIGNMENT 11 -> GET REVENUE FOR CROP WITH TWO ENVIRONMENTAL FACTORS //
 
 const getRevenueForCropWithFactors = (input, environmentalFactors) =>
     getYieldForCropWithFactors(input, environmentalFactors) * input.crop.salesPrice;
 
-// ASSIGNMENT 12 -> GET PROFIT FOR CROPS //
+// ASSIGNMENT 12 -> GET PROFIT FOR CROPS WITH TWO ENVIRONMENTAL FACTORS //
 
-const getProfitForCropWithFactors = (input, environmentalFactors) =>
-    getRevenueForCropWithFactors(input, environmentalFactors) - getCostsForCrop(input);
+const getProfitForCropWithFactors = (input, environmentalFactors) => 
+getRevenueForCropWithFactors(input, environmentalFactors) - getCostsForCrop(input);
+
+// ASSIGNMENT 13 -> GET TOTAL PROFIT FOR CROPLIST WITH TWO ENVIRONMENTAL FACTORS //
+
+const getTotalProfitForCropsWithFactors = ({ cropList }, environmentalFactors) => {
+    const profitOfAllCrops = cropList.map(crop => getProfitForCropWithFactors(crop, environmentalFactors));
+    return profitOfAllCrops.reduce((x, y) => x + y);
+};
 
 module.exports = {
     getYieldForPlant,
@@ -99,5 +103,6 @@ module.exports = {
     getYieldForCropWithFactors,
     getTotalYieldWithFactors,
     getRevenueForCropWithFactors,
-    getProfitForCropWithFactors
+    getProfitForCropWithFactors,
+    getTotalProfitForCropsWithFactors
 };
