@@ -10,7 +10,8 @@ const {
     getYieldForCropWithFactors,
     getTotalYieldWithFactors,
     getRevenueForCropWithFactors,
-    getProfitForCropWithFactors
+    getProfitForCropWithFactors,
+    getTotalProfitForCropsWithFactors
 }
     = require("./Farm");
 
@@ -21,7 +22,7 @@ describe("getYieldForPlant", () => {
         name: "Corn",
         yield: 30,
     };
-    test("TEST -> GET YIELD FOR PLANT WITH NO ENVIRONMENTAL FACTORS", () => {
+    test("TEST 1 -> GET YIELD FOR A PLANT", () => {
         expect(getYieldForPlant(corn)).toBe(30);
     });
 });
@@ -29,7 +30,7 @@ describe("getYieldForPlant", () => {
 // ASSIGNMENT 2 -> TESTING -> GET YIELD FOR CROP //
 
 describe("getYieldForCrop", () => {
-    test("TEST -> GET YIELD FOR CROP WITH NO ENVIRONMENTAL FACTORS", () => {
+    test("TEST 2 -> GET YIELD FOR A CROP", () => {
         const corn = {
             name: "corn",
             yield: 3
@@ -45,7 +46,7 @@ describe("getYieldForCrop", () => {
 // ASSIGNMENT 3 -> TESTING -> GET TOTAL YIELD //
 
 describe("getTotalYield", () => {
-    test("TEST -> CALCULATE TOTAL YIELD WITH MULTIPLE CROPS", () => {
+    test("TEST 3.1 -> CALCULATE TOTAL YIELD WITH MULTIPLE CROPS", () => {
         const corn = {
             name: "corn",
             yield: 3,
@@ -61,7 +62,7 @@ describe("getTotalYield", () => {
         expect(getTotalYield({ crops })).toBe(23);
     });
 
-    test("TEST -> CALCULATE TOTAL YIELD WITH 0 AMOUNT", () => {
+    test("TEST 3.2 -> CALCULATE TOTAL YIELD WITH 0 AMOUNT", () => {
         const corn = {
             name: "corn",
             yield: 3,
@@ -83,10 +84,10 @@ describe("getCostsForCrop", () => {
         crop: cucumber,
         numCrops: 25,
     }
-    test("TEST -> GET THE COST OF CUCUMBERS", () => {
+    test("TEST 4 -> GET THE COST OF CUCUMBERS", () => {
         expect(getCostsForCrop(input)).toBe(75)
     })
-})
+});
 
 // ASSIGNMENT 5 -> GET REVENUE FOR CROPS //
 
@@ -100,10 +101,10 @@ describe("getRevenueForCrop", () => {
         numCrops: 10,
         crop: spinach,
     }
-    test("TEST -> GET REVENUE FOR SPINACH", () => {
+    test("TEST 5 -> GET REVENUE FOR SPINACH", () => {
         expect(getRevenueForCrop(input)).toBe(250)
     })
-})
+});
 
 // ASSIGNMENT 6 -> GET PROFIT FOR CROPS //
 
@@ -118,12 +119,12 @@ describe("getProfitForCrop", () => {
         numCrops: 20,
         crop: tomato,
     }
-    test("TEST -> GET PROFIT FOR TOMATOES", () => {
+    test("TEST 6 -> GET PROFIT FOR TOMATOES", () => {
         expect(getProfitForCrop(input)).toBe(360)
     })
-})
+});
 
-// ASSIGNMENT 7 -> GET TOTAL PROFIT //
+// ASSIGNMENT 7 -> GET TOTAL PROFIT FOR CROPLIST //
 
 describe("getTotalProfit", () => {
     const asparagus = {
@@ -149,12 +150,12 @@ describe("getTotalProfit", () => {
         { crop: eggplant, numCrops: 20 },
         { crop: carrots, numCrops: 50 }
     ];
-    test("TEST -> GET TOTAL REVENUE FOR THREE DIFFERENT CROPS/VEGETABLES", () => {
+    test("TEST 7 -> GET TOTAL REVENUE FOR THREE DIFFERENT CROPS/VEGETABLES", () => {
         expect(getTotalProfit({ cropList })).toBe(10420)
     })
-})
+});
 
-// ASSIGNMENT 8 -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS //
+// ASSIGNMENT 8 -> GET YIELD FOR PLANT WITH TWO ENVIRONMENTAL FACTORS //
 
 // TEST 8.1 -> FACTORS ARE: HIGH SUN & MEDIUM WIND //
 
@@ -183,7 +184,7 @@ describe("getYieldForPlantWithFactors", () => {
         sun: "high"
     };
 
-    test("TEST -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (HIGH SUN & MEDIUM WIND", () => {
+    test("TEST 8.1 -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (HIGH SUN & MEDIUM WIND", () => {
         expect(getYieldForPlantWithFactors(corn, environmentalFactors)).toBe(45);
     });
 });
@@ -215,7 +216,7 @@ describe("getYieldForPlantWithFactors", () => {
         sun: "low"
     };
 
-    test("TEST -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (LOW SUN & HIGH WIND)", () => {
+    test("TEST 8.2 -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (LOW SUN & HIGH WIND)", () => {
         expect(getYieldForPlantWithFactors(corn, environmentalFactors)).toBe(22.5);
     });
 });
@@ -252,7 +253,7 @@ describe("getYieldForCropWithFactors", () => {
         wind: "medium"
     };
 
-    test("TEST -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (LOW SUN & MEDIUM WIND)", () => {
+    test("TEST 9.1 -> GET YIELD FOR PLANT WITH ENVIRONMENTAL FACTORS (LOW SUN & MEDIUM WIND)", () => {
         expect(getYieldForCropWithFactors(input, environmentalFactors)).toBe(66);
     });
 });
@@ -290,7 +291,7 @@ describe("getYieldForCropWithFactors", () => {
         sun: "high"
     };
 
-    test("TEST -> GET YIELD FOR CROP WITH ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
+    test("TEST 9.2 -> GET YIELD FOR CROP WITH ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
         expect(getYieldForCropWithFactors(input, environmentalFactors)).toBe(128);
     });
 });
@@ -300,7 +301,7 @@ describe("getYieldForCropWithFactors", () => {
 // TEST 10.1 -> FACTORS ARE: LOW SUN & MEDIUM WIND //
 
 describe("getTotalYieldWithFactors", () => {
-    test("TEST -> CALCULATE TOTAL YIELD WITH MULTIPLE CROPS & ENVIRONMENTAL FACTORS (LOW SUN & MEDIUM WIND)", () => {
+    test("TEST 10.1 -> CALCULATE TOTAL YIELD WITH MULTIPLE CROPS & ENVIRONMENTAL FACTORS (LOW SUN & MEDIUM WIND)", () => {
         const corn = {
             name: "Corn",
             yield: 5,
@@ -353,7 +354,7 @@ describe("getTotalYieldWithFactors", () => {
 // TEST 10.2 -> FACTORS ARE: HIGH SUN & HIGH WIND //
 
 describe("getTotalYieldWithFactors", () => {
-    test("TEST -> CALCULATE TOTAL YIELD WITH MULTIPLE CROPS & ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
+    test("TEST 10.2 -> CALCULATE TOTAL YIELD WITH MULTIPLE CROPS & ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
         const corn = {
             name: "Corn",
             yield: 4,
@@ -437,10 +438,10 @@ describe("getRevenueForCropWithFactors", () => {
         sun: "low"
     }
 
-    test("TEST -> GET REVENUE FOR SPINACH & ENVIRONMENTAL FACTORS (LOW SUN & MEDIUM WIND)", () => {
+    test("TEST 11.1 -> GET REVENUE FOR SPINACH & ENVIRONMENTAL FACTORS (LOW SUN & MEDIUM WIND)", () => {
         expect(getRevenueForCropWithFactors(cropDetails, environmentalFactors)).toBe(220)
     })
-})
+});
 
 // TEST 11.2 -> 
 
@@ -474,12 +475,12 @@ describe("getRevenueForCropWithFactors", () => {
         sun: "high"
     }
 
-    test("TEST -> GET REVENUE FOR SPINACH & ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
+    test("TEST 11.2 -> GET REVENUE FOR SPINACH & ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
         expect(getRevenueForCropWithFactors(cropDetails, environmentalFactors)).toBe(360)
     })
-})
+});
 
-// ASSIGNMENT 12 -> GET REVENUE FOR CROP WITH TWO ENVIRONMENTAL FACTORS //
+// ASSIGNMENT 12 -> GET PROFIT FOR CROP WITH TWO ENVIRONMENTAL FACTORS //
 
 // TEST 12.1 ->
 
@@ -513,10 +514,10 @@ describe("getProfitForCropWithFactors", () => {
         sun: "low"
     }
 
-    test("TEST -> GET PROFIT FOR TOMATOES WITH ENVIRONMENTAL FACTORS ((LOW SUN & MEDIUM WIND)", () => {
+    test("TEST 12.1 -> GET PROFIT FOR TOMATOES WITH ENVIRONMENTAL FACTORS (LOW SUN & MEDIUM WIND)", () => {
         expect(getProfitForCropWithFactors(input, environmentalFactors)).toBe(227.2)
     })
-})
+});
 
 // TEST 12.2 ->
 
@@ -550,7 +551,165 @@ describe("getProfitForCropWithFactors", () => {
         sun: "high"
     }
 
-    test("TEST -> GET PROFIT FOR TOMATOES WITH ENVIRONMENTAL FACTORS ((HIGH SUN & HIGH WIND)", () => {
+    test("TEST 12.2 -> GET PROFIT FOR TOMATOES WITH ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
         expect(getProfitForCropWithFactors(input, environmentalFactors)).toBe(636.8)
     })
-})
+});
+
+// ASSIGNMENT 13 -> GET TOTAL PROFIT FOR CROPLIST WITH TWO ENVIRONMENTAL FACTORS //
+
+// TEST 13.1 ->
+
+describe("getTotalProfitForCropsWithFactors", () => {
+    const asparagus = {
+        name: "Asparagus",
+        salesPrice: 10,
+        costs: 4,
+        yield: 6,
+        factors: {
+
+            wind: {
+                low: -40,
+                medium: 10,
+                high: 60
+            },
+
+            sun: {
+                low: -20,
+                medium: 20,
+                high: 40
+            }
+        }
+    }
+    const eggplant = {
+        name: "Eggplant",
+        salesPrice: 15,
+        costs: 5,
+        yield: 5,
+        factors: {
+
+            wind: {
+                low: -40,
+                medium: 10,
+                high: 60
+            },
+
+            sun: {
+                low: -20,
+                medium: 20,
+                high: 40
+            }
+        }
+    }
+    const carrots = {
+        name: "Carrots",
+        salesPrice: 8,
+        costs: 2,
+        yield: 20,
+        factors: {
+
+            wind: {
+                low: -40,
+                medium: 10,
+                high: 60
+            },
+
+            sun: {
+                low: -20,
+                medium: 20,
+                high: 40
+            }
+        }
+    }
+    const cropList = [
+        { crop: asparagus, numCrops: 20 },
+        { crop: eggplant, numCrops: 20 },
+        { crop: carrots, numCrops: 50 }
+    ];
+    const environmentalFactors = {
+        wind: "medium",
+        sun: "low"
+    }
+
+    test("TEST 13.1 -> GET TOTAL PROFIT FOR THREE CROPS WITH ENVIRONMENTAL FACTORS (LOW SUN & MEDIUM WIND)", () => {
+        expect(getTotalProfitForCropsWithFactors({ cropList }, environmentalFactors)).toBe(9136)
+    })
+});
+
+// TEST 13.2 ->
+
+describe("getTotalProfitForCropsWithFactors", () => {
+    const asparagus = {
+        name: "Asparagus",
+        salesPrice: 10,
+        costs: 4,
+        yield: 6,
+        factors: {
+
+            wind: {
+                low: -40,
+                medium: 10,
+                high: 60
+            },
+
+            sun: {
+                low: -20,
+                medium: 20,
+                high: 40
+            }
+        }
+    }
+    const eggplant = {
+        name: "Eggplant",
+        salesPrice: 15,
+        costs: 5,
+        yield: 5,
+        factors: {
+
+            wind: {
+                low: -40,
+                medium: 10,
+                high: 60
+            },
+
+            sun: {
+                low: -20,
+                medium: 20,
+                high: 40
+            }
+        }
+    }
+    const carrots = {
+        name: "Carrots",
+        salesPrice: 8,
+        costs: 2,
+        yield: 20,
+        factors: {
+
+            wind: {
+                low: -40,
+                medium: 10,
+                high: 60
+            },
+
+            sun: {
+                low: -20,
+                medium: 20,
+                high: 40
+            }
+        }
+    }
+    const cropList = [
+        { crop: asparagus, numCrops: 20 },
+        { crop: eggplant, numCrops: 20 },
+        { crop: carrots, numCrops: 50 }
+    ];
+    const environmentalFactors = {
+        wind: "high",
+        sun: "high"
+    }
+
+    test("TEST 13.2 -> GET TOTAL PROFIT FOR THREE CROPS WITH ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
+        expect(getTotalProfitForCropsWithFactors({ cropList }, environmentalFactors)).toBe(23688)
+    })
+});
