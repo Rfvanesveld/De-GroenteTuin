@@ -266,22 +266,22 @@ describe("getYieldForCropWithFactors", () => {
         factors: {
 
             wind: {
-                low: -60,
+                low: -40,
                 medium: 10,
                 high: 60
             },
 
             sun: {
-                low: -20,
+                low: -40,
                 medium: 10,
-                high: 40
+                high: 60
             },
         }
     };
 
     const input = {
         crop: corn,
-        numCrops: 20
+        numCrops: 10
 
     };
 
@@ -291,7 +291,7 @@ describe("getYieldForCropWithFactors", () => {
     };
 
     test("TEST -> GET YIELD FOR CROP WITH ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
-        expect(getYieldForCropWithFactors(input, environmentalFactors)).toBe(224);
+        expect(getYieldForCropWithFactors(input, environmentalFactors)).toBe(128);
     });
 });
 
@@ -303,7 +303,7 @@ describe("getTotalYieldWithFactors", () => {
     test("TEST -> CALCULATE TOTAL YIELD WITH MULTIPLE CROPS & ENVIRONMENTAL FACTORS (LOW SUN & MEDIUM WIND)", () => {
         const corn = {
             name: "Corn",
-            yield: 4,
+            yield: 5,
             factors: {
 
                 wind: {
@@ -313,9 +313,9 @@ describe("getTotalYieldWithFactors", () => {
                 },
 
                 sun: {
-                    low: -20,
+                    low: -40,
                     medium: 10,
-                    high: 40
+                    high: 60
                 }
             }
         };
@@ -346,7 +346,7 @@ describe("getTotalYieldWithFactors", () => {
             wind: "medium",
             sun: "low"
         }
-        expect(getTotalYieldWithFactors({ crops }, environmentalFactors)).toBe(70);
+        expect(getTotalYieldWithFactors({ crops }, environmentalFactors)).toBe(68.2);
     });
 });
 
@@ -399,7 +399,7 @@ describe("getTotalYieldWithFactors", () => {
             wind: "high",
             sun: "high"
         }
-        expect(getTotalYieldWithFactors({ crops }, environmentalFactors)).toBe(180);
+        expect(getTotalYieldWithFactors({ crops }, environmentalFactors)).toBe(179.2);
     });
 });
 
@@ -452,15 +452,15 @@ describe("getRevenueForCropWithFactors", () => {
         factors: {
 
             wind: {
-                low: -40,
+                low: -20,
                 medium: 10,
-                high: 60
+                high: 20
             },
 
             sun: {
                 low: -20,
                 medium: 10,
-                high: 40
+                high: 20
             }
         }
     }
@@ -475,7 +475,7 @@ describe("getRevenueForCropWithFactors", () => {
     }
 
     test("TEST -> GET REVENUE FOR SPINACH & ENVIRONMENTAL FACTORS (HIGH SUN & HIGH WIND)", () => {
-        expect(getRevenueForCropWithFactors(cropDetails, environmentalFactors)).toBe(560)
+        expect(getRevenueForCropWithFactors(cropDetails, environmentalFactors)).toBe(360)
     })
 })
 
@@ -493,7 +493,7 @@ describe("getProfitForCropWithFactors", () => {
 
             wind: {
                 low: -40,
-                medium: 10,
+                medium: 20,
                 high: 60
             },
 
@@ -514,7 +514,7 @@ describe("getProfitForCropWithFactors", () => {
     }
 
     test("TEST -> GET PROFIT FOR TOMATOES WITH ENVIRONMENTAL FACTORS ((LOW SUN & MEDIUM WIND)", () => {
-        expect(getProfitForCropWithFactors(input, environmentalFactors)).toBe(200)
+        expect(getProfitForCropWithFactors(input, environmentalFactors)).toBe(227.2)
     })
 })
 
@@ -551,6 +551,6 @@ describe("getProfitForCropWithFactors", () => {
     }
 
     test("TEST -> GET PROFIT FOR TOMATOES WITH ENVIRONMENTAL FACTORS ((HIGH SUN & HIGH WIND)", () => {
-        expect(getProfitForCropWithFactors(input, environmentalFactors)).toBe(636)
+        expect(getProfitForCropWithFactors(input, environmentalFactors)).toBe(636.8)
     })
 })

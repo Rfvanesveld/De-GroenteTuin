@@ -63,8 +63,8 @@ const getYieldForPlantWithFactors = (input, environmentalFactors) => {
 // ASSIGNMENT 9 -> GET YIELD FOR CROP WITH TWO ENVIRONMENTAL FACTORS //
 
 const getYieldForCropWithFactors = (input, environmentalFactors) =>
-    Math.round(getYieldForPlantWithFactors(input.crop, environmentalFactors)
-        * input.numCrops);
+    getYieldForPlantWithFactors(input.crop, environmentalFactors)
+        * input.numCrops;
 
 // ASSIGNMENT 10 -> GET TOTAL YIELD WITH TWO ENVIRONMENTAL FACTORS //
 
